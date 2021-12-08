@@ -1,0 +1,23 @@
+#PBS -l walltime=50:00:00
+#PBS -l ncpus=1
+#PBS -l mem=40GB,vmem=40GB
+#PBS -N createPON
+#PBS -j oe
+
+. /dmf/uqdi/Core_Services/UQCCG/Software/sw/modules/Modules/3.2.10/init/bash
+
+module load samtools
+module load java/1.8.0_25
+
+cd /dmf/uqdi/Genomic_Medicine/Fink_Group/projects/bcc/u_geneve_exomes/mutect2
+
+/dmf/uqdi/Core_Services/UQCCG/Software/sw/java/1.8.0_25/bin/java -jar /dmf/uqdi/Core_Services/UQCCG/Software/sw/gatk/3.6/GenomeAnalysisTK.jar \
+     -nct      1 \
+     -T        CombineVariants \
+     -R        /dmf/uqdi/Genomic_Medicine/Fink_Group/genomes/hs37d5/hs37d5.fa \
+     -V  5-NB007-N1/5-NB007-N1.mutect2.vcf  -V  5-NB008-N1/5-NB008-N1.mutect2.vcf  -V  5-NB011-N1/5-NB011-N1.mutect2.vcf  -V  5-NB013-N1/5-NB013-N1.mutect2.vcf  -V  5-NB015-N1/5-NB015-N1.mutect2.vcf  -V  5-NB016-N1/5-NB016-N1.mutect2.vcf  -V  5-NB017-N1/5-NB017-N1.mutect2.vcf  -V  5-NB018-N1/5-NB018-N1.mutect2.vcf  -V  5-VS002-N1/5-VS002-N1.mutect2.vcf  -V  5-VS003-N1/5-VS003-N1.mutect2.vcf  -V  5-VS004-N1/5-VS004-N1.mutect2.vcf  -V  5-VS005-N1/5-VS005-N1.mutect2.vcf  -V  5-VS006-N1/5-VS006-N1.mutect2.vcf  -V  5-VS007-N1/5-VS007-N1.mutect2.vcf  -V  5-VS008-N1/5-VS008-N1.mutect2.vcf  -V  5-VS009-N1/5-VS009-N1.mutect2.vcf  -V  5-VS010-N1/5-VS010-N1.mutect2.vcf  -V  5-VS011-N1/5-VS011-N1.mutect2.vcf  -V  5-VS013-N1/5-VS013-N1.mutect2.vcf  -V  5-VS014-N1/5-VS014-N1.mutect2.vcf  -V  5-VS015-N1/5-VS015-N1.mutect2.vcf  -V  5-VS017-N1/5-VS017-N1.mutect2.vcf  -V  5-VS018-N1/5-VS018-N1.mutect2.vcf  -V  5-VS019-N1/5-VS019-N1.mutect2.vcf  -V  5-VS021-N1/5-VS021-N1.mutect2.vcf  -V  5-VS022-N1/5-VS022-N1.mutect2.vcf  -V  5-VS023-N1/5-VS023-N1.mutect2.vcf  -V  5-VS024-N1/5-VS024-N1.mutect2.vcf  -V  5-VS026-N1/5-VS026-N1.mutect2.vcf  -V  5-VS027-N1/5-VS027-N1.mutect2.vcf  -V  5-VS028-N1/5-VS028-N1.mutect2.vcf  -V  5-VS029-N1/5-VS029-N1.mutect2.vcf  -V  5-VS030-N1/5-VS030-N1.mutect2.vcf  -V  5-VS031-N1/5-VS031-N1.mutect2.vcf  -V  5-VS033-N1/5-VS033-N1.mutect2.vcf  -V  5-VS034-N1/5-VS034-N1.mutect2.vcf  -V  5-VS036-N1/5-VS036-N1.mutect2.vcf  -V  5-VS038-N1/5-VS038-N1.mutect2.vcf  -V  5-VS039-N1/5-VS039-N1.mutect2.vcf  -V  5-VS040-N1/5-VS040-N1.mutect2.vcf  -V  5-VS041-N1/5-VS041-N1.mutect2.vcf  -V  5-VS042-N1/5-VS042-N1.mutect2.vcf  -V  5-VS043-N1/5-VS043-N1.mutect2.vcf  -V  5-VS045-N1/5-VS045-N1.mutect2.vcf  -V  5-VS046-N1/5-VS046-N1.mutect2.vcf  -V  5-VS047-N1/5-VS047-N1.mutect2.vcf  -V  5-VS048-N1/5-VS048-N1.mutect2.vcf  -V  5-VS050-N1/5-VS050-N1.mutect2.vcf  -V  5-VS052-N1/5-VS052-N1.mutect2.vcf  -V  5-VS097-N1/5-VS097-N1.mutect2.vcf \
+     -minN 2 \
+     --setKey "null" \
+     --filteredAreUncalled \
+     --filteredrecordsmergetype KEEP_IF_ANY_UNFILTERED \
+     -o  PON-50/PON-50.mutect2.vcf
